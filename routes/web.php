@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Blog;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
@@ -15,29 +16,40 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $blogs =[
-        [
-            'title'=>' My First-blog',
-            'filename'=>'first-blog',
-            'intro'=>'lorem...',
-            'created_at'=>'2 6 2000',
-        ],
-        [
-            'title'=>' My Second-blog',
-            'filename'=>'Second-blog',
-            'intro'=>'lorem....',
-            'created_at'=>'2 6 2000',
-        ],
-        [
-            'title'=>' My Third-blog',
-            'filename'=>'Third-blog',
-            'intro'=>'lorem....',
-            'created_at'=>'2 6 2000',
-        ],
+    // $blogs = File::files(resource_path('/blogs'));
+    // // $blogs =[
+    // //     [
+    // //         'title'=>' My First-blog',
+    // //         'filename'=>'first-blog',
+    // //         'intro'=>'lorem...',
+    // //         'created_at'=>'2 6 2000',
+    // //     ],
+    // //     [
+    // //         'title'=>' My Second-blog',
+    // //         'filename'=>'Second-blog',
+    // //         'intro'=>'lorem....',
+    // //         'created_at'=>'2 6 2000',
+    // //     ],
+    // //     [
+    // //         'title'=>' My Third-blog',
+    // //         'filename'=>'Third-blog',
+    // //         'intro'=>'lorem....',
+    // //         'created_at'=>'2 6 2000',
+    // //     ],
+    // //     [
+    // //         'title'=>' My Fourth-blog',
+    // //         'filename'=>'Fourth-blog',
+    // //         'intro'=>'lorem....',
+    // //         'created_at'=>'2 6 2000',
+    // //     ],
         
-    ];
+    // // ];
+    // $blogContents =array_map(function($blogs){
+    //     return $blogs->getContents();
+    // }, $blogs);
+   
     return view('home', [
-        'blogs'=>$blogs
+        'blogs'=> Blog::all()
     ]
 );
 });
@@ -45,11 +57,11 @@ Route::get('/', function () {
 //     return view('blogs/first-blog');
 // });
 Route::get('/blogs/{filename}', function ($filename) {
-   if( ! File::exists('../resources/views/blogs/'.$filename.".blade.php")){
-    abort(404);
-   }
-    return view('blogs.' . $filename);
-})->whereAlphaNumeric('filename');
+   
+    return view('blog',[
+        'blog'=> Blog::find($filename)
+    ]);
+});
 Route::get('/about-us', function () {
     return view('about');
 });

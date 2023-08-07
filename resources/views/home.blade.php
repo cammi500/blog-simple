@@ -14,15 +14,20 @@
 
 <body>
 
-    <?php foreach($blogs as $blog ) : ?>
+ 
     <div class=" container">
-        <h1> <a href="/blogs/{{$blog['filename']}}">
+        <?php foreach($blogs as $blog ) : ?>
+        {!! $blog !!}
+        <?php endforeach;?>
+    </div>
+        {{-- <h1> <a href="/blogs/{{$blog['filename']}}">
                 {{$blog['title']}}
             </a>
         </h1>
         <p>{{$blog['intro']}} </p>
-        <p> published date - {{$blog['created_at']}}</p> <?php endforeach;?>
-    </div>
+        <p> published date - {{$blog['created_at']}}</p>
+         --}}
+       
 
 
 
