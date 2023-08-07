@@ -10,7 +10,11 @@
 </head>
 <body>
     <div class="container">
-        {!!$blog!!}
+        <h1>{{$blog->title}}</h1>
+        <p>
+            {{!!$blog->body!!}}
+        </p>
+        <p>published at - {{ $blog->created_at}}</p>
     </div>
 </body>
 </html>

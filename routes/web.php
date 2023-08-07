@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Models\Blog;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,53 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // $blogs = File::files(resource_path('/blogs'));
-    // // $blogs =[
-    // //     [
-    // //         'title'=>' My First-blog',
-    // //         'filename'=>'first-blog',
-    // //         'intro'=>'lorem...',
-    // //         'created_at'=>'2 6 2000',
-    // //     ],
-    // //     [
-    // //         'title'=>' My Second-blog',
-    // //         'filename'=>'Second-blog',
-    // //         'intro'=>'lorem....',
-    // //         'created_at'=>'2 6 2000',
-    // //     ],
-    // //     [
-    // //         'title'=>' My Third-blog',
-    // //         'filename'=>'Third-blog',
-    // //         'intro'=>'lorem....',
-    // //         'created_at'=>'2 6 2000',
-    // //     ],
-    // //     [
-    // //         'title'=>' My Fourth-blog',
-    // //         'filename'=>'Fourth-blog',
-    // //         'intro'=>'lorem....',
-    // //         'created_at'=>'2 6 2000',
-    // //     ],
-        
-    // // ];
-    // $blogContents =array_map(function($blogs){
-    //     return $blogs->getContents();
-    // }, $blogs);
-   
-    return view('home', [
-        'blogs'=> Blog::all()
-    ]
-);
-});
-// Route::get('/blogs/first-blog', function () {
-//     return view('blogs/first-blog');
-// });
-Route::get('/blogs/{filename}', function ($filename) {
-   
-    return view('blog',[
-        'blog'=> Blog::find($filename)
-    ]);
-});
+Route::get('/',[BlogController::class,'index'] );
+
+Route::get('/blogs/{slug}',[BlogController::class,'show']);
+
 Route::get('/about-us', function () {
     return view('about');
 });
