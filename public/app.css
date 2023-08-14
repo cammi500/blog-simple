@@ -1,6 +1,11 @@
 .container{
     margin: auto;
-    background-color: aqua;
+
     max-width: 600px;
+
+}
+
+.bg-yellow{
+background-color: yellow;
 
 }
