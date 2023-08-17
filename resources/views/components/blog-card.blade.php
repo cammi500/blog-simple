@@ -6,4 +6,5 @@
         {{!!$blog->body!!}}
     </p>
     <p>published at - {{ $blog->created_at}}</p>
+    <p>Category - <a href="/categories/{{$blog->category->slug}}">{{$blog->category->name}}</a></p>
    </div>
