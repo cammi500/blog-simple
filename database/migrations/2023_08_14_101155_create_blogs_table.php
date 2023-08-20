@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
+            
             $table->string('title');
             $table->text('body');
            $table->text('reading_time')->nullable();
+           $table->unsignedBigInteger('user_id');
+           $table->unsignedBigInteger(('category_id'));
             $table->timestamps();
         });
     }
