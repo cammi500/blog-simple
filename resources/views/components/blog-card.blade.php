@@ -10,9 +10,9 @@
     <p>Author- <a href="/authors/{{$blog->author->username}}">{{$blog->author->name}}</a></p>
    </div> --}}
 
-  <x-layout>
+   <x-layout>
     <x-navbar/>
      <x-hero/>
-      <x-blog-section/>
+      <x-blog-section :blogs="$blogs"/>
       <x-subscribe/>
 </x-layout>

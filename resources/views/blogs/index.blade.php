@@ -1,5 +1,5 @@
 
- <x-layout>
+<x-layout>
     <div class=" container">
         <form action="/" method="GET">
             <label for="name">Search :</label>
@@ -21,4 +21,3 @@
         @endif --}}
     </div>
 </x-layout>
-   
