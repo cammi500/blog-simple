@@ -16,7 +16,7 @@ class BlogController extends Controller
             'blogs'=> Blog::with('category','author')
             ->latest()
             ->search(request('query'))
-            ->get()
+            ->get(),
         ]
     );
     
@@ -31,8 +31,10 @@ class BlogController extends Controller
     public function show(Blog $blog) {
    
     return view('blogs.show',[
-        // 'blog'=> Blog::where('slug',$slug)->first()
-        'blog'=> $blog
+       
+        'blog'=> $blog,
+        // 'randomBlogs' => Blog::inRandomOrder()->take(3)->get()
+        'randomBlogs'=>Blog::inRandomOrder()->take(3)->get()
     ]);
 }
 
