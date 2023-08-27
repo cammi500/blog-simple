@@ -17,6 +17,9 @@ class BlogController extends Controller
             ->latest()
             ->search(request('query'))
             ->get(),
+            'categories'=>Category::all(),
+        
+            
         ]
     );
     
@@ -24,7 +27,9 @@ class BlogController extends Controller
     public function showCatBlogs(Category $category) {
 
         return view('blogs.index', [
-        'blogs'=> $category->posts->load('category')
+        'blogs'=> $category->posts->load('category'),
+        'categories'=>Category::all(),
+        'currentCategory'=>$category
         ]
     );
     }
@@ -33,24 +38,16 @@ class BlogController extends Controller
     return view('blogs.show',[
        
         'blog'=> $blog,
-        // 'randomBlogs' => Blog::inRandomOrder()->take(3)->get()
         'randomBlogs'=>Blog::inRandomOrder()->take(3)->get()
     ]);
 }
 
-// public function getBlogs()
-// {
-//     if (request('query')){
-//         $blogs =Blog::where('title', 'like','%' . request('query'). '%')->get();
-//     }else {
-//         $blogs =   Blog::with('category','author')->get();
-//     }
-//     return $blogs;
-// }
+
 public function showAuthorBlogs(User $author)
 {
     return view('blogs.index',[
-        'blogs'=> $author->blogs->load('category','author')
+        'blogs'=> $author->blogs->load('category','author'),
+        'categories'=>Category::all()
     ]);
 }
 }
