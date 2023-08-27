@@ -1,6 +1,6 @@
 <x-layout>
-    <x-navbar/>
+   
      <x-hero/>
-      <x-blog-section/>
+      <x-blogs-section/>
       <x-subscribe/>
 </x-layout>   

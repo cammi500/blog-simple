@@ -16,7 +16,7 @@
      />
    </head>
    <body id="home">
-
+    <x-navbar/>
     {{$slot}}
 
     <x-footer/>
