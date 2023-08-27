@@ -9,24 +9,32 @@ class Blog extends Model
 {
     use HasFactory;
 
-    public  function scopeSearch($query ,$searchValue)
+    public  function scopeFilter($query ,$filters)
     {
-        return $query
-        ->when($searchValue,function ($query) use ($searchValue) {
+     $query
+        ->when($filters['search'] ?? null,function ($query) use ($filters) {
             $query
-            ->where(function($query) use ($searchValue) 
-            {
-               $query ->where('title', 'like','%' . $searchValue. '%')
-                        ->orWhere('body', 'like','%' . $searchValue. '%');
+            ->where(function($query) use ($filters) {
+               $query ->where('title', 'like','%' . $filters['search']. '%')
+                        ->orWhere('body', 'like','%' . $filters['search']. '%');
             }); 
         });
         
-        // if ($searchValue){
-        //     $query
-        //     ->where('title', 'like','%' . $searchValue. '%')
-        //     ->orWhere('body', 'like','%' . $searchValue. '%');
-        // }
-        // return $query;
+        $query
+        ->when($filters['category'] ?? null,function ($query) use ($filters) {
+                $query->whereHas('category',function ($catQuery) use ($filters) {
+                    $catQuery->whereSlug($filters['category']);
+                });
+                    
+        });
+        
+        $query
+        ->when($filters['author'] ?? null,function ($query) use ($filters) {
+            $query->whereHas('author',function ($autQuery) use ($filters) {
+                $autQuery->whereUsername($filters['author']);
+            });
+                
+    });
     }
     
     public function category()

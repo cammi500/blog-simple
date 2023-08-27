@@ -19,10 +19,10 @@ class BlogFactory extends Factory
     public function definition(): array
     {
         return [
-        'title'=>fake()->sentence(),
-        'body' => fake()->paragraph(),
-            'slug'=>fake()->slug(),
-           'intro'=>fake()->sentence(),
+        'title'=>$this->faker->sentence(),
+        'body' =>$this->faker->paragraph(),
+            'slug'=>$this->faker->slug(),
+           'intro'=>$this->faker->sentence(),
            'user_id'=> User::factory(),
            'category_id'=> Category::factory(),
         ];

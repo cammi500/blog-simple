@@ -1,25 +1,23 @@
-@props(['blogs','categories','currentCategory',])
+@props(['blogs',])
 
 <section class="container text-center" id="blogs">
     <h1 class="display-5 fw-bold mb-4">Blogs</h1>
-    <div class="">
-      <div class="dropdown">
-        <button class="btn btn-outline-primary dropdown-toggle" type="button"id="dropdownMenuButton1"
-        data-bs-toggle="dropdown"
-        aria-expanded="false">
-       {{isset($currentCategory) ? $currentCategory->name : 'filter by category'}}
-      </button>
-        <ul class="dropdown-menu"aria-labelledby="dropdownMenuButton1" >
-          @foreach ($categories as $category)
-          <li><a href="/categories/{{$category->slug}}" class="dropdown-item">{{$category->name}}</a></li>
-          @endforeach
-        
-        </ul>
-      </div>
-    </div>
+       <x-category/>
     <form action="" class="my-3">
+
+      @if (request('category'))
+      <input type="hidden" name="category" value="{{request('category')}}">
+        
+      @endif
+      @if (request('author'))
+      <input type="hidden" name="author" value="{{request('category')}}">
+        
+      @endif
+
       <div class="input-group mb-3">
         <input
+        value="{{request('search')}}"
+        name="search"
           type="text"
           autocomplete="false"
           class="form-control"
@@ -42,6 +40,6 @@
       </div> 
       @endforeach
      
-      
+      {{$blogs->links()}}
     </div>
   </section>
