@@ -16,7 +16,15 @@
      />
    </head>
    <body id="home">
+
     <x-navbar/>
+    {{-- flash message --}}
+    @if(session()->has('success')
+    )
+    <div class="alert alert-success"role="alert">
+      {{session('success')}}
+    </div>
+    @endif
     {{$slot}}
 
     <x-footer/>
