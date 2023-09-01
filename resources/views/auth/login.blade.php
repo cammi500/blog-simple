@@ -28,5 +28,4 @@
         <div>
             <button type="submit">login</button>
         </div>
-    </form>
 </x-layout>
