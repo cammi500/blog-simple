@@ -50,6 +50,7 @@
   </div>
   @endauth
   <x-comments :comments="$blog->comments()->latest()->get()" />
+    {{-- object --}}
   <x-subscribe />
   <x-blogs_you_may_like_section :randomBlogs="$randomBlogs" />
 </x-layout>
