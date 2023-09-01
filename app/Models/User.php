@@ -44,13 +44,16 @@ class User extends Authenticatable
         'is_admin' => 'boolean',
     ];
     public function blogs(){
-        return $this->hasmany(Blog::class);
+        return $this->hasMany(Blog::class);
     }
-    public function password(){
-        return Attribute::make(
-            set: fn(string $value)=>bcrypt($value)
-        );
-    }//ac
+    // public function password(){
+    //     return Attribute::make(
+    //         set: fn(string $value)=>bcrypt($value)
+    //     );
+    // }//ac
+    protected function setPasswordAttribute($value){
+        $this->attributes['password'] = bcrypt($value);
+    }
     public function getNameAttribute($value){
     return ucfirst($value);
     }
