@@ -17,15 +17,13 @@
     <p class="mt-1">
         {{$comment->body}}
     </p>
-    <button
-    type="button" 
-    class="btn btn-primary my-3 d-block"
-     >Update</button>
+    <form action="" method="GET" >
+        @csrf
+        <button type="submit" class="btn btn-primary">Delete</button>
 
-        <button
-        type="button"
-        class="btn btn-primary my-3"
-      >Delete</button>
+      </form>
+
+        
   
 
 </div>

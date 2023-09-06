@@ -14,6 +14,7 @@ Route::middleware(AuthMiddleware::class)->group(function(){
 
     Route::post('/logout',[AuthController::class,'logout']);
     Route::post('/blogs/{blog:slug}/comments', [CommentController::class, 'store']);
+    Route::get('/blogs/{blog:slug}/comments', [CommentController::class, 'delete']);
 
 });
 

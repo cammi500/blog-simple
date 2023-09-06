@@ -1,61 +1,53 @@
-<x-layout>
-    <form
+<x-registerlayout>
+    <form class="login-form" 
         action="/register"
         method="POST"
     >
         @csrf
-        <div>
-            <label for="">name</label>
-            <input
-                type="text"
-                name="name"
-                value="{{old("name")}}"
-            >
+            <h2>Login</h2>
+            <div class="input-container">
+                <input type="text" name="name" value="{{old("name")}}" required />
+                <label>Name</label>
+                <i class="bx bxs-user"></i>
              @error('name')
             <p class="text-danger">{{$message}}</p>
             @enderror 
         </div>
-        <div>
-            <label for="">email</label>
-            <input
-                type="email"
-                name="email"
-                value="{{old("email")}}"
-            >
-            @error('email')
-            <p class="text-danger">{{$message}}</p>
-            @enderror
-        </div>
-        <div>
-            <label for="">username</label>
-            <input
-                type="text"
-                name="username"
-                value="{{old("username")}}"
-            >
-            @error('username')
-            <p class="text-danger">{{$message}}</p>
-            @enderror
-        </div>
-        <div>
-            <label for="">Password</label>
-            <input
-                type="password"
-                name="password"
-            >
-        </div>
-        <div>
-            <label for="">Confirm Password</label>
-            <input
-                type="password"
-                name="password_confirmation"
-            >
+        <div class="input-container">
+            <input type="text" name="email" value="{{old("email")}}" required />
+            <label>Email</label>
+            <i class="bx bxs-user"></i>
+         @error('email')
+        <p class="text-danger">{{$message}}</p>
+        @enderror 
+    </div>
+        <div class="input-container">
+            <input type="password" name="password"  value="{{old("password")}}"  required>
+            <label >Password</label>
+            <i class='bx bxs-user'></i>
             @error('password')
             <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
+       
+             <div class="input-container">
+                <input type="username" name="username"  value="{{old("username")}}"  required>
+                <label >Username</label>
+                <i class='bx bxs-user'></i>
+                @error('username')
+                <p class="text-danger">{{$message}}</p>
+                @enderror
+            </div>
+            <div class="input-container">
+                <input type="password" name="password_confirmation"  value="{{old("password")}}"  required>
+                <label >Comfirmed password</label>
+                <i class='bx bxs-user'></i>
+                @error('password')
+                <p class="text-danger">{{$message}}</p>
+                @enderror
+            </div>
         <div>
             <button type="submit">register</button>
         </div>
     </form>
-</x-layout>
+</x-registerlayout>

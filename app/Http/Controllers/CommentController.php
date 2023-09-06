@@ -17,4 +17,8 @@ class CommentController extends Controller
         $blog->comments()->create($cleanData);
         return back();
     }
+    public function delete(Blog $blog)
+    {
+        $blog->comments->delete();
+    }
 }

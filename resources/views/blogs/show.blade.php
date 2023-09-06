@@ -22,6 +22,7 @@
       </div>
   </div>
 
+  
   @auth
   <div class="container">
       <div class="col-md-8 mx-auto">
